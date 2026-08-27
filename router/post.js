@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const run = require("../gemini")
+const { run, chat } = require("../gemini");
 const taxcal = require("../calculator/taxcalculator");
 
 // ========================================
@@ -207,6 +207,20 @@ New Tax Calculation for AY 2025-26: ${taxcal.income_taxcalcnew_ay2526(taxabinc)}
     new25: taxcal.income_taxcalcnew_ay2526(taxabinc),
     statement : result.response.text()
   });
+});
+
+router.post("/chat", async (req, res) => {
+  try {
+    const { message, history } = req.body;
+    if (!message) {
+      return res.status(400).json({ error: "Message is required" });
+    }
+    const responseText = await chat(message, history || []);
+    res.json({ response: responseText });
+  } catch (error) {
+    console.error("Chat route error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 module.exports = router;

@@ -1,61 +1,56 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tax Buddy</title>
+    <meta name="description" content="TaxBuddy - Simplify Your Taxes with AI. Accurate Indian tax calculator and problem solver.">
+    <title>TaxBuddy | AI Tax Assistant for India</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chatWidget.css">
 </head>
 <body>
     <header>
-        <div class="logo" >Tax Buddy</div>
+        <div class="logo">TaxBuddy</div>
         <nav>
             <ul>
-                
                 <li><a href="#features">Features</a></li>
+                <li><a href="/income">Calculator</a></li>
                 <li id="contacts"><a href="/contacts">Contact Us</a></li>
-                <li id="login"><a href="/login">Login</a></li>
+                <li id="login"><a href="/login" class="btn-primary">Login</a></li>
             </ul>
         </nav>
     </header>
 
-
     <section class="hero">
-        <body>
-            <div class="gradient-text">
-                <h1>Simplify Your Taxes, Save Your Time</h1>
-            </div>
-        </body>
-       
-        <p>Automated tax calculations for individuals and businesses.</p>
-       <button class="cta" id="getstarted">Get Started</button>
+        <h1>Simplify Your Taxes with AI Magic</h1>
+        <p>Automated tax calculations, latest Indian tax regimes, and an intelligent AI bot to solve all your tax problems instantly.</p>
+        <button class="cta" onclick="window.location.href='/income'">Calculate Tax Now</button>
     </section>
 
     <section id="features">
-        <h2>Why Choose Us?</h2>
+        <h2>Why Choose TaxBuddy?</h2>
         <div class="feature-list">
             <div class="feature">
-                <h3>Easy Calculations</h3>
-                <p>Say goodbye to manual tax calculations.</p>
+                <h3>Smart AI Bot</h3>
+                <p>Get instant answers to complex tax questions with our advanced generative AI assistant tailored for Indian tax laws.</p>
             </div>
             <div class="feature">
-                <h3>Accurate Results</h3>
-                <p>Ensure compliance with the latest tax laws.</p>
+                <h3>Latest Tax Slabs</h3>
+                <p>Always updated with the newest budget. Automatically compares Old vs. New regime (AY 2024-25 & AY 2025-26) to save you money.</p>
             </div>
             <div class="feature">
-                <h3>User Friendly</h3>
-                <p>An intuitive interface for everyone.</p>
+                <h3>Lightning Fast</h3>
+                <p>Experience a buttery smooth, premium interface designed to make tax filing and calculations completely effortless.</p>
             </div>
         </div>
     </section>
 
     <footer id="contact">
-        <p>Contact us: ankitnitdgpcs@gmail.com</p>
-        <p>&copy; 2025 TaxBuddy. All rights reserved.</p>
-        <script src="script.js"></script>
+        <p>Contact us: support@taxbuddy.ai</p>
+        <p>&copy; 2026 TaxBuddy. All rights reserved.</p>
     </footer>
     
+    <script src="script.js"></script>
+    <script src="chatWidget.js"></script>
 </body>
-
 </html>
