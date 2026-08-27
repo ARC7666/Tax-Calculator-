@@ -1,4 +1,7 @@
+const fs = require('fs');
+const path = require('path');
 
+const premiumCss = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
@@ -246,3 +249,23 @@ footer {
   background: var(--bg-secondary);
   margin-top: 4rem;
 }
+`;
+
+const filesToUpdate = [
+    'public/income/income.css',
+    'public/property/property.css',
+    'public/login/login.css',
+    'public/signup/signup.css',
+    'public/contacts/styles.css',
+    'public/started/land2.css'
+];
+
+filesToUpdate.forEach(file => {
+    const fullPath = path.join(__dirname, file);
+    if (fs.existsSync(fullPath)) {
+        fs.writeFileSync(fullPath, premiumCss);
+        console.log("Updated", file);
+    } else {
+        console.log("Not found:", file);
+    }
+});
