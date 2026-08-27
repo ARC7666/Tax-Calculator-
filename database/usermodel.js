@@ -12,12 +12,19 @@ const userSchema = new mongoose.Schema({
     },
     mobile: {
         type: String,
-        required: true,
-        unique : true
+        required: false,
+        unique: true,
+        sparse: true
     },
-    password : {
-        type : String,
-        required : true
+    password: {
+        type: String,
+        required: false
+    },
+    googleId: {
+        type: String,
+        required: false,
+        unique: true,
+        sparse: true
     }
 },
 {

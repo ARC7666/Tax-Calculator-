@@ -1,6 +1,8 @@
 require("dotenv").config(); // using .env file
 const express = require("express");
 const path = require("path");
+const session = require("express-session");
+const passport = require("passport");
 const mongoose = require("mongoose");
 const get = require("./router/get");
 const post = require("./router/post");
@@ -15,6 +17,13 @@ const app = express();
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(session({
+  secret: process.env.JWT_SECRET || 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Route Definitions
 app.use("/submit", post);

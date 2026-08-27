@@ -1,22 +1,20 @@
 const fs = require('fs');
 const path = require('path');
 
-const premiumCss = `
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+const cleanCss = `
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --accent-color: #3b82f6;
-  --accent-hover: #2563eb;
-  --accent-glow: rgba(59, 130, 246, 0.5);
-  --card-bg: rgba(30, 41, 59, 0.7);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --nav-bg: rgba(15, 23, 42, 0.85);
-  --gradient-1: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --bg-primary: #f9fafb;
+  --bg-secondary: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --accent-color: #2563eb;
+  --accent-hover: #1d4ed8;
+  --border-color: #e5e7eb;
   --success: #10b981;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 * {
@@ -29,12 +27,8 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
-  background-attachment: fixed;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Header & Nav */
@@ -42,22 +36,20 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--card-border);
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
   padding: 1rem 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: var(--shadow-sm);
 }
 
 .logo {
   font-size: 1.5rem;
-  font-weight: 800;
-  background: var(--gradient-1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  color: var(--accent-color);
+  letter-spacing: -0.5px;
 }
 
 nav ul {
@@ -72,7 +64,7 @@ nav ul li a {
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 nav ul li a:hover {
@@ -88,35 +80,34 @@ main, .container, .hero {
 
 h1, h2, h3 {
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
-  font-weight: 700;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 
-/* Form Sections as Glass Cards */
+/* Form Sections as Clean Cards */
 .form-section, .form-container, .summary-box, .login-box, .contact-box {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  padding: 2.5rem;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  margin-bottom: 25px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease;
 }
+
 .form-section:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-md);
 }
 
 /* Inputs */
 label {
   display: block;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  font-size: 0.95rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 input[type="text"],
@@ -125,46 +116,57 @@ input[type="email"],
 input[type="password"],
 textarea {
   width: 100%;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
   color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 input:focus, textarea:focus {
   outline: none;
   border-color: var(--accent-color);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 /* Buttons */
 button, .cta, #submit-btn, .btn-primary {
-  background: var(--gradient-1);
+  background-color: var(--accent-color);
   color: white;
-  padding: 12px 25px;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px var(--accent-glow);
+  transition: background-color 0.2s ease;
   font-family: inherit;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: auto;
-  margin-top: 20px;
+  margin-top: 1.5rem;
 }
 
 button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px var(--accent-glow);
+  background-color: var(--accent-hover);
+}
+
+.google-btn {
+  background-color: #fff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.google-btn:hover {
+  background-color: #f3f4f6;
 }
 
 /* Special Layouts */
@@ -177,20 +179,20 @@ button:hover {
 /* Checkboxes / Yes-No */
 .yes-no-options, .checkbox-group {
   display: flex;
-  gap: 15px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 0.5rem;
 }
 
 .yes-no-box, .checkbox-box {
   flex: 1;
-  padding: 10px 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
   text-align: center;
   cursor: pointer;
   font-weight: 500;
-  transition: all 0.2s;
+  transition: all 0.15s ease;
   color: var(--text-secondary);
 }
 
@@ -199,59 +201,55 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked + label {
-  background: var(--accent-color);
+  background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: white;
 }
 
 /* Results Box */
 .summary-box {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
-  border: 1px solid var(--accent-color);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
 .tax-item {
   display: flex;
   justify-content: space-between;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--card-border);
-  font-size: 1.1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 1.05rem;
 }
 
 .tax-item span {
-  font-weight: 700;
-  color: var(--success);
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .statement {
-  margin-top: 25px;
-  padding: 20px;
-  background: rgba(16, 185, 129, 0.1);
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #ecfdf5;
   border-left: 4px solid var(--success);
   border-radius: 4px;
-  color: var(--text-primary);
-  line-height: 1.6;
-}
-
-/* Loading Wrapper */
-.loading-wrapper {
-  background: var(--bg-primary) !important;
-}
-.loading-text {
-  color: var(--text-primary) !important;
+  color: #065f46;
+  line-height: 1.5;
+  font-size: 0.95rem;
 }
 
 /* Footer */
 footer {
   text-align: center;
   padding: 2rem 5%;
-  border-top: 1px solid var(--card-border);
-  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
   margin-top: 4rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
 }
 `;
 
 const filesToUpdate = [
+    'public/home/styles.css',
     'public/income/income.css',
     'public/property/property.css',
     'public/login/login.css',
@@ -263,9 +261,7 @@ const filesToUpdate = [
 filesToUpdate.forEach(file => {
     const fullPath = path.join(__dirname, file);
     if (fs.existsSync(fullPath)) {
-        fs.writeFileSync(fullPath, premiumCss);
+        fs.writeFileSync(fullPath, cleanCss);
         console.log("Updated", file);
-    } else {
-        console.log("Not found:", file);
     }
 });
