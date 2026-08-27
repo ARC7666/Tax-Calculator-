@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Supp140106/taxbuddy.git"
+    "url": "git+https://github.com/ARC7666/Tax-Calculator-.git"
   },
-  "author": "Supprit",
+  "author": "Ankit Ranjan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Supp140106/taxbuddy/issues"
+    "url": "https://github.com/ARC7666/Tax-Calculator-/issues"
   },
-  "homepage": "https://github.com/Supp140106/taxbuddy#readme",
+  "homepage": "https://github.com/ARC7666/Tax-Calculator-#readme",
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
     "bcrypt": "^5.1.1",
