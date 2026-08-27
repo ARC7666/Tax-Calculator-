@@ -1,18 +1,38 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": "public/**"
-      }
-    }
+    { "src": "server.js", "use": "@vercel/node" },
+    { "src": "public/**/*", "use": "@vercel/static" }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "server.js"
-    }
+    { "src": "/submit/(.*)", "dest": "/server.js" },
+    { "src": "/auth/(.*)", "dest": "/server.js" },
+    { "src": "/form/(.*)", "dest": "/server.js" },
+    
+    { "src": "/login", "dest": "/public/login/index.html" },
+    { "src": "/login/(.*)", "dest": "/public/login/$1" },
+
+    { "src": "/signup", "dest": "/public/signup/index.html" },
+    { "src": "/signup/(.*)", "dest": "/public/signup/$1" },
+
+    { "src": "/contacts", "dest": "/public/contacts/index.html" },
+    { "src": "/contacts/(.*)", "dest": "/public/contacts/$1" },
+
+    { "src": "/income", "dest": "/public/income/index.html" },
+    { "src": "/income/(.*)", "dest": "/public/income/$1" },
+
+    { "src": "/property", "dest": "/public/property/index.html" },
+    { "src": "/property/(.*)", "dest": "/public/property/$1" },
+
+    { "src": "/getstarted", "dest": "/public/started/index.html" },
+    { "src": "/getstarted/(.*)", "dest": "/public/started/$1" },
+
+    { "src": "/404", "dest": "/public/404/index.html" },
+    { "src": "/404/(.*)", "dest": "/public/404/$1" },
+
+    { "src": "/(.*\\.css|.*\\.js|.*\\.png|.*\\.gif|.*\\.svg|.*\\.jpg)", "dest": "/public/home/$1" },
+    { "src": "/$", "dest": "/public/home/index.html" },
+    
+    { "src": "/(.*)", "dest": "/server.js" }
   ]
 }
