@@ -1,5 +1,6 @@
 require("dotenv").config(); // using .env file
 const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
 const get = require("./router/get");
 const post = require("./router/post");
@@ -29,7 +30,7 @@ app.use("/",get);
 
 
 app.all("*",(req,res)=>{
-  res.redirect("/404")
+  res.status(404).sendFile(path.join(__dirname, "public", "404", "index.html"));
 })
 //connection mongo db
 mongoose
